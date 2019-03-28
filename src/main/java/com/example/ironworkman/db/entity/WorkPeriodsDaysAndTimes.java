@@ -1,4 +1,4 @@
-package com.example.ironworkman.model;
+package com.example.ironworkman.db.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
