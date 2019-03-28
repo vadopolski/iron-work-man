@@ -3,7 +3,7 @@
     <changeSet author="Opolskiy (generated)" id="1553504831976-1">
         <createTable tableName="CATEGORIES">
             <column name="ID" type="INT">
-                <constraints nullable="false"/>
+                <constraints primaryKey="true"/>
             </column>
             <column name="NAME" type="VARCHAR(256)">
                 <constraints nullable="false"/>
@@ -14,7 +14,7 @@
     <changeSet author="Opolskiy (generated)" id="1553504831976-2">
         <createTable tableName="USERS">
             <column name="ID" type="INT">
-                <constraints nullable="false"/>
+                <constraints primaryKey="true"/>
             </column>
             <column name="USER_NAME" type="VARCHAR(256)">
                 <constraints nullable="false"/>
@@ -24,13 +24,13 @@
     <changeSet author="Opolskiy (generated)" id="1553504831976-3">
         <createTable tableName="WORK_PERIOD">
             <column name="ID" type="INT">
-                <constraints nullable="false"/>
+                <constraints primaryKey="true"/>
             </column>
             <column name="TIME_AMOUNT" type="INT">
                 <constraints nullable="false"/>
             </column>
             <column name="DESCRIPTION" type="VARCHAR(256)"/>
-            <column name="WORK_PERIODS_DAYS_AND_TIMES_WORK_SCHEDULES_ID" type="INT">
+            <column name="WORK_PERIODS_DAYS_AND_TIMES_ID" type="INT">
                 <constraints nullable="false"/>
             </column>
             <column name="CATEGORIES_ID" type="INT">
@@ -40,8 +40,8 @@
     </changeSet>
     <changeSet author="Opolskiy (generated)" id="1553504831976-4">
         <createTable tableName="WORK_PERIODS_DAYS_AND_TIMES">
-            <column name="WORK_SCHEDULES_ID" type="INT">
-                <constraints nullable="false"/>
+            <column name="ID" type="INT">
+                <constraints primaryKey="true"/>
             </column>
             <column name="START_DAY_TIME" type="datetime(6)">
                 <constraints nullable="false"/>
@@ -57,18 +57,18 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Opolskiy (generated)" id="1553504831976-5">
-        <addPrimaryKey columnNames="ID" constraintName="PRIMARY" tableName="CATEGORIES"/>
-    </changeSet>
-    <changeSet author="Opolskiy (generated)" id="1553504831976-6">
-        <addPrimaryKey columnNames="ID" constraintName="PRIMARY" tableName="USERS"/>
-    </changeSet>
-    <changeSet author="Opolskiy (generated)" id="1553504831976-7">
-        <addPrimaryKey columnNames="ID" constraintName="PRIMARY" tableName="WORK_PERIOD"/>
-    </changeSet>
-    <changeSet author="Opolskiy (generated)" id="1553504831976-8">
-        <addPrimaryKey columnNames="WORK_SCHEDULES_ID" constraintName="PRIMARY" tableName="WORK_PERIODS_DAYS_AND_TIMES"/>
-    </changeSet>
+    <!--<changeSet author="Opolskiy (generated)" id="1553504831976-5">-->
+        <!--<addPrimaryKey columnNames="ID" constraintName="PRIMARY" tableName="CATEGORIES"/>-->
+    <!--</changeSet>-->
+    <!--<changeSet author="Opolskiy (generated)" id="1553504831976-6">-->
+        <!--<addPrimaryKey columnNames="ID" constraintName="PRIMARY" tableName="USERS"/>-->
+    <!--</changeSet>-->
+    <!--<changeSet author="Opolskiy (generated)" id="1553504831976-7">-->
+        <!--<addPrimaryKey columnNames="ID" constraintName="PRIMARY" tableName="WORK_PERIOD"/>-->
+    <!--</changeSet>-->
+    <!--<changeSet author="Opolskiy (generated)" id="1553504831976-8">-->
+        <!--<addPrimaryKey columnNames="ID" constraintName="PRIMARY" tableName="WORK_PERIODS_DAYS_AND_TIMES"/>-->
+    <!--</changeSet>-->
     <changeSet author="Opolskiy (generated)" id="1553504831976-9">
         <createIndex indexName="fk_WORK_PERIOD_CATEGORIES1_idx" tableName="WORK_PERIOD">
             <column name="CATEGORIES_ID"/>
@@ -76,7 +76,7 @@
     </changeSet>
     <changeSet author="Opolskiy (generated)" id="1553504831976-10">
         <createIndex indexName="fk_WORK_PERIOD_WORK_PERIODS_DAYS_AND_TIMES1_idx" tableName="WORK_PERIOD">
-            <column name="WORK_PERIODS_DAYS_AND_TIMES_WORK_SCHEDULES_ID"/>
+            <column name="WORK_PERIODS_DAYS_AND_TIMES_ID"/>
         </createIndex>
     </changeSet>
     <changeSet author="Opolskiy (generated)" id="1553504831976-11">
@@ -88,7 +88,7 @@
         <addForeignKeyConstraint baseColumnNames="CATEGORIES_ID" baseTableName="WORK_PERIOD" constraintName="fk_WORK_PERIOD_CATEGORIES1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ID" referencedTableName="CATEGORIES"/>
     </changeSet>
     <changeSet author="Opolskiy (generated)" id="1553504831976-13">
-        <addForeignKeyConstraint baseColumnNames="WORK_PERIODS_DAYS_AND_TIMES_WORK_SCHEDULES_ID" baseTableName="WORK_PERIOD" constraintName="fk_WORK_PERIOD_WORK_PERIODS_DAYS_AND_TIMES1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="WORK_SCHEDULES_ID" referencedTableName="WORK_PERIODS_DAYS_AND_TIMES"/>
+        <addForeignKeyConstraint baseColumnNames="WORK_PERIODS_DAYS_AND_TIMES_ID" baseTableName="WORK_PERIOD" constraintName="fk_WORK_PERIOD_WORK_PERIODS_DAYS_AND_TIMES1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ID" referencedTableName="WORK_PERIODS_DAYS_AND_TIMES"/>
     </changeSet>
     <changeSet author="Opolskiy (generated)" id="1553504831976-14">
         <addForeignKeyConstraint baseColumnNames="USERS_ID" baseTableName="WORK_PERIODS_DAYS_AND_TIMES" constraintName="fk_WORK_SCHEDULES_DAYS_AND_TIMES_USERS" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ID" referencedTableName="USERS"/>
